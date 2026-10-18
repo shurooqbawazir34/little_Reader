@@ -27,3 +27,16 @@ This is a prototype. It includes parent-account isolation, consent confirmation,
 ## Current product boundaries
 
 No payment, printing, school admin, password reset, production-grade content moderation, or real scoring of pronunciation. Progress scores measure quiz accuracy only; do not use them to diagnose learning differences. Stories use one cover picture plus an optional avatar, not per-page AI art.
+## Bedtime journey
+
+At `/app`, choose **حكاية الليلة** after adding a child. Complete parent consent, character, language and bedtime preferences, then answer three daily questions by typing or browser speech recognition. The API checks the answers for safety before generating five pages with separate parent narration and child reading lines, three vocabulary words, a small task, and a parent conversation question. Invalid safety responses stop generation. AI requests require the configured server API key.
+
+The reader uses code-drawn SVG scenes rather than paid per-page AI images. Reading marks are parent/child self-reports, not pronunciation scoring. Finish vocabulary practice to save one reading session per book and pause new bedtime generation until 07:00 Asia/Riyadh. The parent dashboard and existing story shelf remain accessible. The morning dashboard includes saved summaries, unique vocabulary, reading minutes, a 14-day chart, settings and child deletion. Share opens the device share sheet or copies the story; it does not automatically message anyone. Bedtime is saved as a preference; it does not send notifications.
+
+Speech recognition support and processing depend on the browser provider. The application stores no audio files. Optional avatar photos are processed by OpenAI; the original photo is not persisted by this application. Safety screening is a model-based prototype and can make mistakes.
+
+Run isolated mocked API checks without spending AI credit:
+
+```powershell
+docker compose run --rm --no-deps -v "${PWD}/tests:/srv/tests:ro" api python -m tests.test_bedtime
+```

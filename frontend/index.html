@@ -997,7 +997,8 @@ function cartoonize(src){
       for (let y = 0; y < N; y++) for (let x = 0; x < N; x++){
         const i = y*N + x, p = i*4; let r = out[p], g = out[p+1], b = out[p+2];
         const l = (r + g + b) / 3; r = l + (r-l)*1.45; g = l + (g-l)*1.45; b = l + (b-l)*1.45;
-        const lum = Math.max(1, .299*r + .587*g + .114*b), f = Math.min(255, Math.round(lum/255*4)/4*215 + 45) / lum;        r *= f; g *= f; b *= f;
+        const lum = Math.max(1, .299*r + .587*g + .114*b), f = Math.min(255, Math.round(lum/255*4)/4*215 + 45) / lum;
+        r *= f; g *= f; b *= f;
         if (x > 0 && y > 0 && x < N-1 && y < N-1){
           const a = k => gray[k];
           const e = Math.hypot(-a(i-N-1) - 2*a(i-1) - a(i+N-1) + a(i-N+1) + 2*a(i+1) + a(i+N+1), -a(i-N-1) - 2*a(i-N) - a(i-N+1) + a(i+N-1) + 2*a(i+N) + a(i+N+1));
